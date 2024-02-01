@@ -18,7 +18,7 @@ export const callUser = async (phone: string, task: string = "some task") => {
     timeout: 30,
     statusCallbackEvent: ["answered", "completed"],
     statusCallbackMethod: "POST",
-    statusCallback: "https://f040-136-232-148-166.ngrok-free.app/api/callback",
+    statusCallback: `${process.env.BASE_URL}/api/callback`,
   });
 
 };

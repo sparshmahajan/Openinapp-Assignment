@@ -11,6 +11,7 @@ JWT_KEY=token_encryption_secret_for_jwt
 TWILIO_ACCOUNT_SID=your_twilio_account_sid
 TWILIO_AUTH_TOKEN=your_twilio_auth_token
 TWILIO_PHONE_NUMBER=your_twilio_phone_number
+BASE_URL=your_base_url
 ```
 
 # API Routes
