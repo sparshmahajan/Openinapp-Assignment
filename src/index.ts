@@ -2,8 +2,6 @@ import { app } from "./config/app";
 require("dotenv").config();
 import { db } from "./config/database";
 import { cronJobs } from "./cronjobs";
-import { callUser } from "./common/callUser";
-import { callUserJob } from "./cronjobs/callUserJob";
 
 const start = async () => {
   const port = process.env.PORT || 3000;
