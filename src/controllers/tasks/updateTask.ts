@@ -29,7 +29,7 @@ export const updateTask = async (req: Request, res: Response) => {
     const subTaskStatus = status === TaskStatusEnums.DONE ? 1 : 0;
 
     await SubTask.updateMany(
-      { task_id: task._id },
+      { task_id: task._id, deleted_at: { $exists: false } },
       {
         $set: {
           status: subTaskStatus,
