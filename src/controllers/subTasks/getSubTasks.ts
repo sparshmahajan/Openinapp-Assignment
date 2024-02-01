@@ -23,9 +23,9 @@ export const getSubTasks = async (req: Request, res: Response) => {
   }
 
   const subTasks = await SubTask.find(filterQuery)
+    .sort({ created_at: -1 })
     .skip(skip)
-    .limit(limit)
-    .sort({ created_at: -1 });
+    .limit(limit);
 
   const totalDocuments = await SubTask.countDocuments(filterQuery);
 
