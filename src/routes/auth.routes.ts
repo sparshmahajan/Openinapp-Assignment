@@ -36,6 +36,6 @@ router.post(
   authController.login
 );
 
-router.get("/user", middlewares.requireAuth, authController.getUserDetails);
+router.get("/", middlewares.requireAuth, authController.getUserDetails);
 
 export { router as authRouter };
