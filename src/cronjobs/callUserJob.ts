@@ -2,6 +2,7 @@ import { User, UserDoc } from "../models/userSchema";
 import { Task, TaskDoc } from "../models/taskSchema";
 import { callUser } from "../common/callUser";
 import { jsonDb } from "../config/jsonDb";
+import { TaskStatusEnums } from "../enums/taskStatusEnum";
 
 const callUserSubTask = async (
   task: TaskDoc,
@@ -34,7 +35,9 @@ export const callUserJob = async () => {
     due_date: {
       $lte: new Date(),
     },
-    status: ["TODO", "IN_PROGRESS"],
+    status: {
+      $ne: TaskStatusEnums.DONE,
+    },
   });
 
   const tasksLength = tasks.length;
