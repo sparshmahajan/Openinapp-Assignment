@@ -1,5 +1,8 @@
 # REST API server for OpeninApp-Assignment
 
+This is a REST API server for OpeninApp-Assignment. It is built using Node.ts, Express.ts , typescript, MongoDB, and Twilio.
+This document provides information on the APIs and cron jobs implemented in the Task Management System.
+
 ## ENV Vars
 
 ```env
@@ -10,7 +13,7 @@ TWILIO_AUTH_TOKEN=your_twilio_auth_token
 TWILIO_PHONE_NUMBER=your_twilio_phone_number
 ```
 
-### API Routes
+# API Routes
 
 ---
 
@@ -47,5 +50,23 @@ TWILIO_PHONE_NUMBER=your_twilio_phone_number
 | Get Tasks   | api/task         | GET    | \_\_    | task_id,page,limit | OK      |
 | Update Task | api/task/:taskId | PUT    | status  | \_\_               | OK      |
 | Delete Task | api/task/:taskId | DELETE | \_\_    | \_\_               | OK      |
+
+---
+
+---
+
+# Cron Jobs
+
+## 1. Change Priority Based on Due Date
+
+- **Logic:** If the due date of a task has passed, update the priority of the task.
+- **Frequency:** Daily
+
+## 2. Voice Calling using Twilio
+
+- **Logic:** If a task passes its due date, initiate a voice call using Twilio.
+  - Call users based on priority (0, 1, 2).
+  - Only call the next user if the previous user does not attend the call.
+- **Frequency:** Daily
 
 ---
