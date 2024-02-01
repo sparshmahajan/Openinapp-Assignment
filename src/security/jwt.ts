@@ -3,7 +3,7 @@ import { sign, verify } from "jsonwebtoken";
 //generalised get token function
 const getToken = function (data: string | object) {
   const jwtSecretKey: string = process.env.JWT_KEY || "";
-  const token = sign(data, jwtSecretKey, { expiresIn: "60d" });
+  const token = sign(data, jwtSecretKey, { expiresIn: "10d" });
   return token;
 };
 
