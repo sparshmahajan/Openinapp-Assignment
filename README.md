@@ -21,9 +21,9 @@ TWILIO_PHONE_NUMBER=your_twilio_phone_number
 
 | Description      | URL               | Method | Body                  | Status  |
 | ---------------- | ----------------- | ------ | --------------------- | ------- |
-| Register         | api/user/register | POST   | phone_number,priority | CREATED |
-| LogIn            | api/user/login    | POST   | phone_number          | OK      |
-| Get User details | api/user          | GET    | \_\_                  | OK      |
+| Register         | api/auth/register | POST   | phone_number,priority | CREATED |
+| LogIn            | api/auth/login    | POST   | phone_number          | OK      |
+| Get user details | api/auth          | GET    | \_\_                  | OK      |
 
 ---
 
