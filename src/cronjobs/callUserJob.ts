@@ -5,10 +5,10 @@ import { jsonDb } from "../config/jsonDb";
 import { TaskStatusEnums } from "../enums/taskStatusEnum";
 
 const callUserSubTask = async (
-  task: TaskDoc,
-  user: UserDoc
+  user: UserDoc,
+  dueTasks: number
 ): Promise<boolean> => {
-  await callUser(user.phone_number, task.title);
+  await callUser(user.phone_number, dueTasks);
 
   return new Promise((resolve) => {
     const callInterval = setInterval(async () => {
@@ -31,26 +31,22 @@ const callUserSubTask = async (
 export const callUserJob = async () => {
   const users = await User.find({}).sort({ priority: 1 });
 
-  const tasks = await Task.find({
+  const tasksCount = await Task.find({
     due_date: {
       $lte: new Date(),
     },
     status: {
       $ne: TaskStatusEnums.DONE,
     },
-  });
+  }).countDocuments();
 
-  const tasksLength = tasks.length;
-
-  for (let i = 0; i < tasksLength; i++) {
+  for (let i = 0; i < users.length; i++) {
     jsonDb.set("callPicked", 0);
-    const task = tasks[i];
-    for (let j = 0; j < users.length; j++) {
-      const user = users[j];
-      const callUserResult = await callUserSubTask(task, user);
-      if (callUserResult) {
-        break;
-      }
+    const user = users[i];
+
+    const callUserResult = await callUserSubTask(user, tasksCount);
+    if (callUserResult) {
+      break;
     }
   }
 };
